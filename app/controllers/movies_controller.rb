@@ -59,8 +59,8 @@ class MoviesController < ApplicationController
   end
 
   def similar
-    @movies = Movie.find_similar params[:id]
     @movie = Movie.find params[:id]
+    @movies = @movie.find_similar
     
     if @movies.count == 0
       flash[:notice] = "'#{@movie.title}' has no director info."

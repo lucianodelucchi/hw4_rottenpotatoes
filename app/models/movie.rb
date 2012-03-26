@@ -3,7 +3,7 @@ class Movie < ActiveRecord::Base
     %w(G PG PG-13 NC-17 R)
   end
   
-  def self.find_similar(id)
-    find_all_by_director(find(id).director)
+  def find_similar
+    Movie.all( :conditions => [ 'director = ? AND id <> ?', self.director, self.id ]  )
   end
 end
